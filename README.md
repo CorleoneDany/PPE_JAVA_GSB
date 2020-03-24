@@ -3,8 +3,8 @@
 
 Contexte
 Galaxy Swiss Bourdin propose à la vente des médicaments issus de son laboratoire. Afin de promouvoir ses produits, l’entreprise compte sur ses commerciaux appelés « Visiteur » et dont le but est de démarcher les praticiens. Pour cela l’entreprise GSB souhaite développer un outil permettant aux visiteurs :
-- Une gestion des comptes rendus
-
+Fonctionnalité 1 : Pouvoir accéder à l’application de n’importe quel l’ordinateur en dehors des locaux.
+Fonctionnalité 2 : Une fois connecté, que l’utilisateurs puisse consulter comptes-rendus des visites, une description des produits du laboratoire, les coordonnées précises des praticiens et des informations détaillées les concernant.
 
  
 Cet outil doit permettre aux visiteurs d’améliorer leur efficacité dans la réalisation de leurs objectifs de vente mais également permettre aux délégués régionaux d’obtenir une synthèse de l’activité de chaque visiteur.
