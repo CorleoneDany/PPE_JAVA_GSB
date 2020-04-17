@@ -6,6 +6,8 @@
 package modele.jdbc;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -54,9 +56,67 @@ public class Jdbc implements JdbcInterface {
         }
         return singleton;
     }
+    
+    //Getter & Setters
 
     public static Jdbc getInstance() {
         return singleton;
-        
     }
+    
+    public String getPiloteJdbc() {
+        return piloteJdbc;
+    }
+
+    public void setPiloteJdbc(String piloteJdbc) {
+        this.piloteJdbc = piloteJdbc;
+    }
+
+    public String getProtocoleJdbc() {
+        return protocoleJdbc;
+    }
+
+    public void setProtocoleJdbc(String protocoleJdbc) {
+        this.protocoleJdbc = protocoleJdbc;
+    }
+
+    public String getServeurBd() {
+        return serveurBd;
+    }
+
+    public void setServeurBd(String serveurBd) {
+        this.serveurBd = serveurBd;
+    }
+
+    public String getNomBd() {
+        return nomBd;
+    }
+
+    public void setNomBd(String nomBd) {
+        this.nomBd = nomBd;
+    }
+
+    public String getLoginSgbd() {
+        return loginSgbd;
+    }
+
+    public void setLoginSgbd(String loginSgbd) {
+        this.loginSgbd = loginSgbd;
+    }
+
+    public String getMdpSgbd() {
+        return mdpSgbd;
+    }
+
+    public void setMdpSgbd(String mdpSgbd) {
+        this.mdpSgbd = mdpSgbd;
+    }
+
+    public Connection getConnexion() {
+        return connexion;
+    }
+
+    public void setConnexion(Connection connexion) {
+        this.connexion = connexion;
+    }
+    
 }
