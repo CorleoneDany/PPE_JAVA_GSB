@@ -131,7 +131,12 @@ public class Jdbc implements JdbcInterface {
 
     @Override
     public ResultSet mettreAJourAvecClefsGenereesRetournees(String requete) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ResultSet rsGK;
+        int nb;
+        Statement st = getConnexion().createStatement();
+        nb = st.executeUpdate(requete, Statement.RETURN_GENERATED_KEYS);
+        rsGK = st.getGeneratedKeys();
+        return rsGK;
     }
 
     @Override
