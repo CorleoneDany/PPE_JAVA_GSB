@@ -7,8 +7,10 @@ package modele.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 /**
@@ -89,22 +91,42 @@ public class Jdbc implements JdbcInterface {
 
     @Override
     public ResultSet consulter(String requete) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ResultSet rs;
+        Statement st = getConnexion().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        rs = st.executeQuery(requete);
+        return rs;
     }
 
     @Override
     public ResultSet consulter(String requete, List param) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ResultSet rs;
+        int index = 0;
+        PreparedStatement ps = this.getConnexion().prepareStatement(requete, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        for (Object o : param) {
+            ps.setObject(++index, o);
+        }
+        rs = ps.executeQuery();
+        return rs;
     }
 
     @Override
     public int mettreAJour(String requete) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int nb;
+        Statement st = getConnexion().createStatement();
+        nb = st.executeUpdate(requete);
+        return nb;
     }
 
     @Override
     public int mettreAJour(String requete, List param) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int nb;
+        int index = 0;
+        PreparedStatement ps = this.getConnexion().prepareStatement(requete);
+        for (Object o : param) {
+            ps.setObject(++index, o);
+        }
+        nb = ps.executeUpdate();
+        return nb;
     }
 
     @Override
