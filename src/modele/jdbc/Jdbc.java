@@ -61,27 +61,30 @@ public class Jdbc implements JdbcInterface {
 
     @Override
     public void connecter() throws ClassNotFoundException, SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Class.forName(this.getPiloteJdbc());
+        setConnexion(DriverManager.getConnection(this.getProtocoleJdbc() + this.getServeurBd() + this.getNomBd(), this.getLoginSgbd(), this.getMdpSgbd()));
+        getConnexion().setAutoCommit(true);
     }
 
     @Override
     public void deconnecter() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getConnexion().close();
     }
 
     @Override
     public void debuterTransaction() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getConnexion().setAutoCommit(false);
     }
 
     @Override
     public void validerTransaction() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getConnexion().commit();
+        getConnexion().setAutoCommit(true);
     }
 
     @Override
     public void annulerTransaction() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getConnexion().rollback();
     }
 
     @Override
