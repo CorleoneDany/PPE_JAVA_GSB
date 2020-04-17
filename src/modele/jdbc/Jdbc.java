@@ -9,8 +9,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -155,10 +157,18 @@ public class Jdbc implements JdbcInterface {
 
     @Override
     public List getNomColonnes(ResultSet rs) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList listeResultat = new ArrayList();
+        ResultSetMetaData rsmd = rs.getMetaData();
+        for (int i = 0; i < rsmd.getColumnCount(); i++) {
+            listeResultat.add(rsmd.getColumnName(i + 1));
+        }
+        return listeResultat;
     }
     
-    
+    public static java.sql.Date utilDateToSqlDate(java.util.Date uneDate) {
+        return (new java.sql.Date(uneDate.getTime()));
+    }
+
     //Getter & Setters
 
     public static Jdbc getInstance() {
