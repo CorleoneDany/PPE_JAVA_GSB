@@ -9,6 +9,28 @@ package controleur;
  *
  * @author Carmona
  */
-public class CtrlAbstrait {
+
+public abstract class CtrlAbstrait {
+    protected VueAbstraite vue = null;
+    protected CtrlPrincipal ctrlprincipal = null;
     
+    protected CtrlAbstrait(CtrlPrincipal ctrlprincipal){
+        this.ctrlprincipal = ctrlprincipal;
+    }
+
+    public VueAbstraite getVue() {
+        return vue;
+    }
+
+    public void setVue(VueAbstraite vue) {
+        this.vue = vue;
+    }
+
+    public CtrlPrincipal getCtrlprincipal() {
+        return ctrlprincipal;
+    }
+
+    public void setCtrlprincipal(CtrlPrincipal ctrlprincipal) {
+        this.ctrlprincipal = ctrlprincipal;
+    }  
 }
