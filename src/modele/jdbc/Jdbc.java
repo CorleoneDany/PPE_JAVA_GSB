@@ -111,22 +111,46 @@ public class Jdbc implements JdbcInterface {
 
     @Override
     public int mettreAJour(String requete) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int nb;
+        Statement st = getConnexion().createStatement();
+        nb = st.executeUpdate(requete);
+        return nb;
     }
 
     @Override
     public int mettreAJour(String requete, List param) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int nb;
+        int index = 0;
+        PreparedStatement ps = this.getConnexion().prepareStatement(requete);
+        for (Object o : param) {
+            ps.setObject(++index, o);
+        }
+        nb = ps.executeUpdate();
+        return nb;
     }
 
     @Override
     public ResultSet mettreAJourAvecClefsGenereesRetournees(String requete) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ResultSet rsGK;
+        int nb;
+        Statement st = getConnexion().createStatement();
+        nb = st.executeUpdate(requete, Statement.RETURN_GENERATED_KEYS);
+        rsGK = st.getGeneratedKeys();
+        return rsGK;
     }
 
     @Override
     public ResultSet mettreAJourAvecClefsGenereesRetournees(String requete, List param) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ResultSet rsGK; // ResultSet devant contenir le dernier ID généré ou vide
+        int nb;
+        int index = 0;
+        PreparedStatement ps = this.getConnexion().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
+        for (Object o : param) {
+            ps.setObject(++index, o);
+        }
+        nb = ps.executeUpdate();
+        rsGK = ps.getGeneratedKeys();
+        return rsGK;
     }
 
     @Override
