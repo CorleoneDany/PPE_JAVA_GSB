@@ -141,7 +141,16 @@ public class Jdbc implements JdbcInterface {
 
     @Override
     public ResultSet mettreAJourAvecClefsGenereesRetournees(String requete, List param) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ResultSet rsGK; // ResultSet devant contenir le dernier ID généré ou vide
+        int nb;
+        int index = 0;
+        PreparedStatement ps = this.getConnexion().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
+        for (Object o : param) {
+            ps.setObject(++index, o);
+        }
+        nb = ps.executeUpdate();
+        rsGK = ps.getGeneratedKeys();
+        return rsGK;
     }
 
     @Override
