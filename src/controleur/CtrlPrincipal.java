@@ -10,8 +10,10 @@ package controleur;
  */
 public class CtrlPrincipal {
 
-    private CtrlVisiteur ctrlVisiteur = null;
-    private CtrlMenu     ctrlMenu     = null;
+    private CtrlMedicament ctrlMedicament = null;
+    private CtrlPracticien ctrlPraticien  = null;
+    private CtrlVisiteur   ctrlVisiteur   = null;
+    private CtrlMenu       ctrlMenu       = null;
 
     /**
      * Utilise par défaut le contrôleur principal
@@ -24,4 +26,53 @@ public class CtrlPrincipal {
         ctrlMenu.getVue().setVisible(true);
     }
    
+    /**
+     * Fait appel au contrôleur correspondant à l'action passée en paramètre
+     * Fonctionnement :
+     * MENU_NOMCONTROLEUR permet d'afficher la vue correspondant au contrôleur depuis le menu,
+     * NOMCONTROLEUR_ACTION permet d'effectuer une action depuis la vue active.
+     * @param action 
+     */
+    public void action(EnumAction action) {
+        switch (action) {
+            
+            // RAPPORTS DE VISITES
+            case MENU_RAPPORTVISITE: 
+                menuRapportVisite();
+                break;
+            case RAPPORTVISITE_FERMER:
+                rapportVisiteFermer();
+                break;
+                
+            // VISITEURS
+            case MENU_VISITEUR: 
+                menuVisiteur();
+                break;
+            case VISITEUR_FERMER:
+                visiteurFermer();
+                break;
+                
+            // PRATICIENS
+            case MENU_PRATICIEN:
+                menuPraticien();
+                break;
+            case PRATICIEN_FERMER: 
+                praticienFermer();
+                break;
+                
+            // MÉDICAMENTS
+            case MENU_MEDICAMENT:
+                menuMedicament();
+                break;
+            case MEDICAMENT_FERMER: 
+                medicamentFermer();
+                break;
+                
+            case MENU_QUITTER:
+                menuQuitter();
+                break;
+        }
+    }
+    
+    // TODO: méthodes appelées dans action(EnumAction enum)
 }
